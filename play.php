@@ -1,3 +1,19 @@
+<?php
+
+    // TODO: create a new instance of a Phrase
+        // Use session to grab phrase if one exists 
+        // and pass to constructor
+
+    // TODO: create a new instance of Game, passing in Phrase
+
+    // TODO: Use page body to interact with Game session
+
+    // TODO: Add reset button and functionality
+
+    // TODO: Add physical keyboard functionality
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
