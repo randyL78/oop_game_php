@@ -22,3 +22,4 @@ function autoloader($class_name) {
 // initiates the auto load function
 spl_autoload_register('autoloader');
 
+$data_file = __DIR__ . '/phrases.json';
