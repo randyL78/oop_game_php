@@ -1,17 +1,60 @@
 <?php
+    // require the class autoloader file
+    require_once 'inc/config.php';
 
-    // TODO: create a new instance of a Phrase
-        // Use session to grab phrase if one exists 
-        // and pass to constructor
+    // start a browser session
+    session_start();
 
-    // TODO: create a new instance of Game, passing in Phrase
+    $selectedKeys = [];     // array to contain selected keys
+    $correctKeys = [];      // array to contain correct keys
+    $currentPhrase = null;  // the current phrase as a string
+    $currentKey;            // currently pressed or clicked key
+    $lives = 0;             // the number of previous wrong guesses
 
-    // TODO: Use page body to interact with Game session
 
-    // TODO: Add reset button and functionality
+    // set the local variables to the corresponding session variables
+    if (isset($_GET['key'])) {
+        $currentKey = filter_input(INPUT_GET, 'key', FILTER_SANITIZE_STRING);
+    } 
 
-    // TODO: Add physical keyboard functionality
+    if (isset($_GET['reset'])) {
+        session_destroy();
+        header('Location: play.php');
+    } 
+    
+    if (isset($_SESSION['phrase'])) {
+        $currentPhrase = filter_var($_SESSION['phrase']);
+    }
 
+    if (isset($_SESSION['selectedKeys'])) {
+        $selectedKeys = $_SESSION['selectedKeys'];
+    }
+
+    if (isset($_SESSION['lives'])) {
+        $lives = filter_var($_SESSION['lives']);
+    }
+
+    if (isset($_SESSION['correctKeys'])) {
+        $correctKeys = $_SESSION['correctKeys'];
+    }
+
+    // initialize a new Phrase object
+    $phrase = new Phrase($currentPhrase, $correctKeys);
+    // store the phrase in a session variable so that it can be
+    // used to create a new instance when a letter is guessed
+    $_SESSION['phrase'] = $phrase->getCurrentPhrase();
+
+    // initialize a new game
+    $game = new Game($phrase, $lives, $selectedKeys);
+    
+    // play a turn if a key was selected
+    if (!empty($currentKey)) {
+        $game->play($currentKey);
+        $selectedKeys[] = $currentKey;
+        $_SESSION['selectedKeys'] = $selectedKeys;
+        $_SESSION['lives'] = $game->getLives();
+        $_SESSION['correctKeys'] = $phrase->getSelectedArray();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +73,21 @@
     <div id="banner" class="section">
         <h2 class="header">Phrase Hunter</h2>
     </div>
+    <?php
+    if ($game->gameOver()) {
+        // if the game is over, add a reset button
+		echo '<form action="play.php">';
+		echo '<input type="hidden" name="reset" value="true" />';
+		echo '<input id="btn__reset" type="submit" value="Start Game" />';
+		echo '</form>';
+
+    } else {
+        // otherwise display the phrase, keyboard, and score
+        $phrase->addPhraseToDisplay();
+        echo $game->displayKeyboard();
+        echo $game->displayScore();
+    }
+    ?>
 </div>
 
 </body>

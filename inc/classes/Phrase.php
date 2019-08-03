@@ -10,7 +10,8 @@ class Phrase
   //        properties
   // -----------------------------------------------------------
   private $currentPhrase;       // string to hold phrase
-  private $selectedArray = [];  // array of letters in phrase
+  private $selectedArray = [];  // array of selected letters in phrase
+  private $currentLetter = null;// store the current selected letter
 
 
 
@@ -25,7 +26,7 @@ class Phrase
   public function __construct(string $phrase = null, array $selectedArray = null)
   {
     if (empty($phrase)) {
-      $this->currentPhrase = $this->getPhrase();
+      $this->currentPhrase = $this->getRandomPhrase();
     } else {
       $this->currentPhrase = $phrase;
     }
@@ -47,6 +48,12 @@ class Phrase
         echo '<li class="hide space"> </li>';
       } else {
         echo '<li class="';  
+        // check if the selected letter is also the current letter
+        // if so, add a transition class
+        if (!empty($this->currentLetter) && $char == $this->currentLetter) {
+          echo 'trans ';
+        }
+
         // check if the current letter has been selected, if so show it
         if (!empty($this->selectedArray) && in_array($char, $this->selectedArray)) {
           echo 'show';
@@ -68,21 +75,36 @@ class Phrase
   public function checkLetter(string $letter)
   {
     // add letter to selected array if not already there
-    if (empty($this->selectedArray) || !in_array($letter, $this->selectedArray)) {
+    if ((empty($this->selectedArray) || !in_array($letter, $this->selectedArray)) && strpos($this->currentPhrase, $letter) !== false)  {
       $this->selectedArray[] = $letter;
-      // return true if the letter is in the phrase;
-      if (strpos($this->currentPhrase, $letter)) {
-        return true;
-      } 
+      // * for use with adding a show transition
+      $this->currentLetter = $letter;
+      return true;
     }
     return false;
+  }
+
+  /**
+   * @return array the current phrase
+   */
+  public function getSelectedArray()
+  {
+    return $this->selectedArray;
+  }
+
+  /**
+   * @return string the current selected letters in phrase
+   */
+  public function getCurrentPhrase()
+  {
+    return $this->currentPhrase;
   }
 
   /**
    * Gets a random phrase from a json file
    * @return string A random phrase
    */
-  protected function getPhrase()
+  protected function getRandomPhrase()
   {
     try {
       $data = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] 
