@@ -61,7 +61,7 @@ class Game
    * Checks if a player has won 
    * @return bool If the player won
    */
-  public function checkWin()
+  public function checkForWin()
   {
     // get the phrase as an array without spaces
     $phraseArray = str_split(str_replace(' ', '',  $this->phrase->getCurrentPhrase()));
@@ -84,7 +84,7 @@ class Game
    * Check if a player lost
    * @return bool If the player lost
    */
-  public function checkLose()
+  public function checkForLose()
   {
     return $this->lives >= self::MAX_LIVES;    
   }
@@ -95,12 +95,12 @@ class Game
    */
   public function gameOver()
   {
-    if ($this->checkWin()) {
+    if ($this->checkForWin()) {
       echo '<h1 id="game-over-message">Congratulations on guessing: "' . $this->phrase->getCurrentPhrase() .  '"</h1>';
       return true;
     }
 
-    if ($this->checkLose()) {
+    if ($this->checkForLose()) {
       echo '<h1 id="game-over-message">The phrase was: "' . $this->phrase->getCurrentPhrase() .  '". Better luck next time!</h1>';
       return true;
     }
@@ -171,11 +171,15 @@ class Game
    */
   public function play($letter)
   {
-    if (!$this->phrase->checkLetter($letter)) 
-    {
-      $this->lives++;
+    // if letter has not been previously selected,
+    // check the letter. Check is used for the physical keyboard.
+    if (!$this->keys[$letter]) {
+      if (!$this->phrase->checkLetter($letter)) 
+      {
+        $this->lives++;
+      }
+      $this->keys[$letter] = true;
     }
-    $this->keys[$letter] = true;
   }
 
   /**

@@ -18,13 +18,13 @@ A browser based word guessing game using Object Oriented Programming principles
   * [X] The class must include the following methods:
     * [X] addPhraseToDisplay(): Builds the HTML for the letters of the phrase. Each letter is presented by an empty box, one list item for each letter. See the example_html/phrase.txt file for an example of what the render HTML for a phrase should look like when the game starts. When the player correctly guesses a letter, the empty box is replaced with the matched letter. Use the class "hide" to hide a letter and "show" to show a letter. Make sure the phrase displayed on the screen doesn't include boxes for spaces: see example HTML.
     * [X] checkLetter(): checks to see if a letter matches a letter in the phrase. Accepts a single letter to check against the phrase. Returns true or false.
-* [ ] Create the Game class in the Game.php file.
+* [X] Create the Game class in the Game.php file.
   * [X] The class must have at least two properties:
     * [X] $phrase an instance of the Phrase class to use with the game
     * [X] $lives an integer for the number of wrong chances to guess the phrase
   * [X] The class should include a constructor which accepts a Phrase object and sets the property
   * [X] The class must also have these methods:
-    * [ ] checkForWin(): this method checks to see if the player has selected all of the letters.
+    * [X] checkForWin(): this method checks to see if the player has selected all of the letters.
     * [X] checkForLose(): this method checks to see if the player has guessed too many wrong letters.
     * [X] gameOver(): this method displays one message if the player wins and another message if they lose. It returns false if the game has not been won or lost.
     * [X] displayKeyboard(): Create a onscreen keyboard form. See the example_html/keyboard.txt file for an example of what the render HTML for the keyboard should look like. If the letter has been selected the button should be disabled. Additionally, the class "correct" or "incorrect" should be added based on the checkLetter() method of the Phrase object. Return a string of HTML for the keyboard form.
@@ -44,7 +44,7 @@ Check for cross-browser consistency
 
 ## Extra credit
 
-* [ ] Add keyboard functionality
-  * [ ] Let players use the computer keyboard to enter guesses. You'll need to use the JavaScript keypress event.
+* [X] Add keyboard functionality
+  * [X] Let players use the computer keyboard to enter guesses. You'll need to use the JavaScript keypress event.
 * [ ] Making the project your own
   * [ ] The general layout should remain the same, but feel free to make the project your own by experimenting with things like color, background color, font, borders, shadows, transitions, animations and/or the exciting CSS filter property.

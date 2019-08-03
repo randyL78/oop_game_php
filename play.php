@@ -89,6 +89,21 @@
     }
     ?>
 </div>
-
+<!-- Would normally put this in a separate file, but very minimal code here -->
+<script>
+    // listen for keyboard presses
+	window.addEventListener('keypress', (e) => {
+        let letterCode = e.charCode;
+        // if capital letter make lowercase
+        if (letterCode >= 65 && letterCode <= 90) {
+            letterCode += 32
+        }
+        // if a letter, redirect back to page
+        if (letterCode >= 97 && letterCode <= 122) {
+            window.location.assign(`play.php?key=${String.fromCharCode(letterCode)}`)
+        }
+    
+    });
+</script>
 </body>
 </html>
