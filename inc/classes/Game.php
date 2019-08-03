@@ -63,7 +63,21 @@ class Game
    */
   public function checkWin()
   {
-    // TODO: Implement check for win
+    // get the phrase as an array without spaces
+    $phraseArray = str_split(str_replace(' ', '',  $this->phrase->getCurrentPhrase()));
+
+    // remove duplicates from array
+    $phraseArray = array_unique($phraseArray);
+
+    // get the correct letters
+    $correctLetters = $this->phrase->getSelectedArray();
+
+    // compare the length of the phrase to the correct letters
+    if (count($phraseArray) == count($correctLetters)) {
+      return true;
+    }
+
+    return false;
   }
 
   /**

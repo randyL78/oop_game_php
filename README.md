@@ -29,11 +29,11 @@ A browser based word guessing game using Object Oriented Programming principles
     * [X] gameOver(): this method displays one message if the player wins and another message if they lose. It returns false if the game has not been won or lost.
     * [X] displayKeyboard(): Create a onscreen keyboard form. See the example_html/keyboard.txt file for an example of what the render HTML for the keyboard should look like. If the letter has been selected the button should be disabled. Additionally, the class "correct" or "incorrect" should be added based on the checkLetter() method of the Phrase object. Return a string of HTML for the keyboard form.
     * [X] displayScore(): Display the number of guesses available. See the example_html/scoreboard.txt file for an example of what the render HTML for a scoreboard should look like. Return string HTML of Scoreboard.
-* [ ] Create the play.php file.
+* [x] Create the play.php file.
   * [X] This file creates a new instance of the Phrase class which OPTIONALLY accepts the current phrase as a string, and an array of selected letters.
   * [X] This file creates a new instance of the Game class which accepts the created instance of the Phrase class.
-  * [ ] The constructor should handle storing the phrase string and selected letters in sessions or another storage mechanism.
-  * [ ] In the body of the page you should play the game. To play the game:
+  * [x] The constructor should handle storing the phrase string and selected letters in sessions or another storage mechanism.
+  * [x] In the body of the page you should play the game. To play the game:
     * [X] Use the gameOver method to check if the game has been won or lost and display appropriate messages.
     * [X] If the game is still in play, display the game items: displayPhrase(), displayKeyboard(), displayScore()
 * [X] Reset the Game
