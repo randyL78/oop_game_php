@@ -55,25 +55,15 @@
         $_SESSION['lives'] = $game->getLives();
         $_SESSION['correctKeys'] = $phrase->getSelectedArray();
     }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Phrase Hunter</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-</head>
+    if ($game->checkForWin()) {
+        $background = "win";
+    }  elseif($game->checkForLose()) {
+        $background = "lose";
+    }
 
-<body>
-<div class="main-container">
-    <div id="banner" class="section">
-        <h2 class="header">Phrase Hunter</h2>
-    </div>
-    <?php
+	include 'inc/header.php';
+
     if ($game->gameOver()) {
         // if the game is over, add a reset button
 		echo '<form action="play.php">';
@@ -87,23 +77,10 @@
         echo $game->displayKeyboard();
         echo $game->displayScore();
     }
-    ?>
-</div>
-<!-- Would normally put this in a separate file, but very minimal code here -->
-<script>
-    // listen for keyboard presses
-	window.addEventListener('keypress', (e) => {
-        let letterCode = e.charCode;
-        // if capital letter make lowercase
-        if (letterCode >= 65 && letterCode <= 90) {
-            letterCode += 32
-        }
-        // if a letter, redirect back to page
-        if (letterCode >= 97 && letterCode <= 122) {
-            window.location.assign(`play.php?key=${String.fromCharCode(letterCode)}`)
-        }
-    
-    });
-</script>
-</body>
-</html>
+
+// JavaScript for keyboard events
+echo '<script src="js/keyboard.js"></script>';
+
+include 'inc/footer.php';
+
+?>

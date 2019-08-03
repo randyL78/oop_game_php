@@ -12,8 +12,10 @@
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
-  --font-size-medium: 20px;
+  --font-size-medium: 30px;
+  --font-size-small: 20px;
   --transition: all .2s ease-in-out;
+  --showTransition: all .4s ease-in-out;
 }
 
 /* main */
@@ -51,12 +53,13 @@ button, input[type=submit] {
   border: 1px solid transparent;
   padding: .5rem 1rem;
   color: var(--color-keys);
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-small);
   background-color: var(--color-keys-light);
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
+  box-shadow: 2px 2px 12px 5px #553278; 
   cursor: pointer;
 }
 input[type=submit].incorrect {
@@ -99,14 +102,15 @@ input[type=submit].correct {
 /* Phrase */
 
 .letter {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-small);
   height: 65px;
   width: 65px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   color: black;
-  background: var(--color-neutral-light);
+  background: var(--color-keys-light);
   border-radius: 5px;
+  box-shadow: 0 0 7px 5px inset rgba(85,50,120, 0.5); 
 }
 
 .space {
@@ -126,12 +130,14 @@ input[type=submit].correct {
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   border-radius: 5px;
+  /* box-shadow: 0 0 12px 5px inset rgba(250, 250, 250, 0.7);  */
 }
 
 /* animate the show letter transition */
-@keyframes fade-in {
+@keyframes flip-in {
   0% {
     background: var(--color-neutral-light);
+    transform: rotateY(180deg);	
   }
 
   100% {
@@ -140,10 +146,10 @@ input[type=submit].correct {
 }
 
 .trans {
-  -webkit-animation-name: fade-in;
-  animation-name: fade-in;
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
+  -webkit-animation-name: flip-in;
+  animation-name: flip-in;
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
 }
 
 
@@ -157,7 +163,7 @@ input[type=submit].correct {
 .chosen, input[type=submit].chosen {
   background: #3a3f58;
   border-radius: 5px;
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-small);
   color: #FFFFFF;
 }
 
@@ -204,7 +210,8 @@ input[type=submit].correct {
 }
 
 .start {
-  background-color: #3a3f58;
+  background-image: radial-gradient(var(--color-keys-light), transparent); 
+  background-color: var(--color-start);
 }
 
 .start a {
@@ -212,7 +219,7 @@ input[type=submit].correct {
 }
 
 .win {
-  background-color: var(--color-win);
+  background-image: radial-gradient(var(--color-keys-light), transparent);  background-color: var(--color-win);
 }
 
 .win a {
@@ -220,7 +227,7 @@ input[type=submit].correct {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-image: radial-gradient(var(--color-keys-light), transparent); background-color: #f5785f;
 }
 
 .lose a {

@@ -1,3 +1,10 @@
+<?php 
+if (!isset($background)) {
+  $background = 'start';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,15 +17,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
-<body>
+<body class=" <?php echo $background ?>" >
 	<div class="main-container">
-		<h2 class="header">Phrase Hunter</h2>
-		<form action="play.php">
-			<input type="hidden" name="reset" value="true" />
-			<input id="btn__reset" type="submit" value="Start Game" />
-		</form>
-	</div>
-
-</body>
-
-</html>
+    <div id="banner" class="section">
+        <h2 class="header">Phrase Hunter</h2>
+    </div>

@@ -46,5 +46,5 @@ Check for cross-browser consistency
 
 * [X] Add keyboard functionality
   * [X] Let players use the computer keyboard to enter guesses. You'll need to use the JavaScript keypress event.
-* [ ] Making the project your own
-  * [ ] The general layout should remain the same, but feel free to make the project your own by experimenting with things like color, background color, font, borders, shadows, transitions, animations and/or the exciting CSS filter property.
+* [x] Making the project your own
+  * [x] The general layout should remain the same, but feel free to make the project your own by experimenting with things like color, background color, font, borders, shadows, transitions, animations and/or the exciting CSS filter property.
